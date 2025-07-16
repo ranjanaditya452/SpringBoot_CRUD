@@ -22,7 +22,7 @@ public class KeyboardController {
 		return "Keyboard Added";
 	}
 	
-	@GetMapping("/getKeyboard")
+	@GetMapping("/getKeyboard")	
 	public Keyboard getKeyboard() {
 		return keyboardService.getKeyboard(1);
 	}

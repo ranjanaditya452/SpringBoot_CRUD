@@ -6,6 +6,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -185,6 +186,11 @@ public class ProductController {
 	@GetMapping("/searchProducts/{str}")
 	public ResponseEntity<List<Product>> searchProducts(@PathVariable String str){
 		return new ResponseEntity<List<Product>>(productService.searchProducts(str),HttpStatus.OK);
+	}
+	
+	@GetMapping("/getProductByPages/{pageNumber}/{pageSize}")
+	public Page<Product> getProductByPages(@PathVariable int pageNumber, @PathVariable int pageSize ){
+		return productService.getProductByPages(pageNumber,pageSize);
 	}
 }
 
