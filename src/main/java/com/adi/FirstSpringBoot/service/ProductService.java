@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.adi.FirstSpringBoot.exceptions.ProductNotFoundException;
@@ -68,6 +69,10 @@ public class ProductService {
 
 	public Page<Product> getProductByPages(int pageNumber, int pageSize) {
 		return productRepository.findAll(PageRequest.of(pageNumber, pageSize));
+	}
+
+	public Page<Product> getProductByPagesSorted(int pageNumber, int pageSize, String field) {
+		return productRepository.findAll(PageRequest.of(pageNumber, pageSize).withSort(Sort.Direction.ASC,field));		
 	}
 }
 

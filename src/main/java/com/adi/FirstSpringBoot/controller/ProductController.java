@@ -192,5 +192,10 @@ public class ProductController {
 	public ResponseEntity<Page<Product>> getProductByPages(@PathVariable int pageNumber, @PathVariable int pageSize ){
 		return new ResponseEntity<Page<Product>>( productService.getProductByPages(pageNumber,pageSize),HttpStatus.OK);
 	}
+	
+	@GetMapping("/getProductByPagesSorted/{pageNumber}/{pageSize}/{field}")
+	public ResponseEntity<Page<Product>> getProductByPagesSorted(@PathVariable int pageNumber, @PathVariable int pageSize,@PathVariable String field){
+		 return new ResponseEntity<Page<Product>>(productService.getProductByPagesSorted(pageNumber,pageSize,field),HttpStatus.OK);
+	}
 }
 
