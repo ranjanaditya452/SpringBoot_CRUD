@@ -189,8 +189,8 @@ public class ProductController {
 	}
 	
 	@GetMapping("/getProductByPages/{pageNumber}/{pageSize}")
-	public Page<Product> getProductByPages(@PathVariable int pageNumber, @PathVariable int pageSize ){
-		return productService.getProductByPages(pageNumber,pageSize);
+	public ResponseEntity<Page<Product>> getProductByPages(@PathVariable int pageNumber, @PathVariable int pageSize ){
+		return new ResponseEntity<Page<Product>>( productService.getProductByPages(pageNumber,pageSize),HttpStatus.OK);
 	}
 }
 
