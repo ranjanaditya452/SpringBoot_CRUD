@@ -38,7 +38,7 @@ public class Product {
 	 int productId;
 	
 	@NotNull(message = "Product title cannot be null") 
-	 @Size(min = 3, message = "Product title must contain at least 3 characters") 
+	 @Size(min =3, message = "Product title must contain at least 3 characters") 
 	 String productTitle;
 	
 	 @NotNull(message = "Desc cannot be null") 

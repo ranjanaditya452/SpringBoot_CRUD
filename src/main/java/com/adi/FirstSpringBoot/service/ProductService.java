@@ -32,6 +32,8 @@ public class ProductService {
 		}
 		else throw new ProductNotFoundException("The Product doesn't exist"); 
 	}
+	
+	
 	public List<Product> addMultipleProducts(List<Product> products){
 		return productRepository.saveAll(products);
 	}
