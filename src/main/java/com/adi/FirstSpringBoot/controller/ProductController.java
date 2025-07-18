@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -33,7 +34,9 @@ public class ProductController {
 
 	@Autowired
 	ProductService productService;
-	
+	 
+	private static final Logger logger=Logger.getLogger(ProductController.class);
+
 	
 	@RequestMapping("/rctest")
 	public String test(Model model)
@@ -114,6 +117,7 @@ public class ProductController {
 	@PostMapping("/addProductbyRequestBody")
 	public ResponseEntity<?> addProductbyRequestBody(@RequestBody @Valid Product product,BindingResult bindingResult)
 	{  
+		logger.info("Controller method for adding product API Request for Product " + product.getProductId());
 		if(bindingResult.hasErrors())
 		{
 			List<APIError> errors = new ArrayList<APIError>();
@@ -125,6 +129,7 @@ public class ProductController {
 			return new ResponseEntity<List<APIError>>(errors,HttpStatus.BAD_REQUEST);
 		}
 		Product prod1 = productService.addProduct(product);
+		logger.info("Product added successfully: " + product.getProductId());
 		return new ResponseEntity<Product>(prod1,HttpStatus.CREATED);
 		
 	}
@@ -135,8 +140,8 @@ public class ProductController {
 		List<Product> list = productService.addMultipleProducts(products);
 		return new ResponseEntity<List<Product>>(list,HttpStatus.CREATED);
 	}
-		
-	@GetMapping("/getProducts")
+	
+	@GetMapping("/getProducts")	
 	public ResponseEntity<List<Product>> getProducts()
 	{  
 		return new ResponseEntity<List<Product>>( productService.getProducts(),HttpStatus.OK);	

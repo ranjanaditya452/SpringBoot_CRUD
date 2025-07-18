@@ -3,6 +3,7 @@ package com.adi.FirstSpringBoot.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,7 +20,9 @@ public class ProductService {
 	@Autowired
 	ProductRepository productRepository;
 	
-	public Product addProduct(Product product){ 
+	private static final Logger logger = Logger.getLogger(ProductService.class);
+ 	public Product addProduct(Product product){ 
+		logger.info("Service method for adding product API Request for Product " + product.getProductId());
 		return productRepository.save(product);
 	}
 
