@@ -42,18 +42,24 @@ public class ProdControllerFE {
 		productService.addProduct(product);
 		return "redirect:/getAllProductsFE";
 	}
-//	@PutMapping("/updateProductFE/{}")
-//	public String updateProductFE()
-//	{ 
-//		productService.updateProduct(, null);
-//		return "redirect:/getAllProductsFE";
-//	}
+	@RequestMapping("/updateProductFE/{pID}")
+	public String updateProductFE( @PathVariable int pID,Model model)
+	{ 
+	Product product= productService.getProduct(pID);
+	model.addAttribute("prod",product) ;
+	return "UpdateProductForm";
+	}
 	
 	@RequestMapping("/deleteProductFE/{pID}")
 	public String deleteProductFe(@PathVariable int pID) {
 	productService.deleteProduct(pID);
 	return "redirect:/getAllProductsFE";
+	}
 	
+	@RequestMapping("/updateProductFormFE/{pID}")
+	public String updateProductFormFE(@ModelAttribute Product product,@PathVariable int pID) {	
+		productService.updateProduct(pID, product);
+		return "redirect:/getAllProductsFE";
 	}
 }
 	
