@@ -17,6 +17,8 @@
             <th>Product Description</th>
             <th>Product Category</th>
             <th>Product Price</th>
+            <th>Update</th>
+            <th>Delete</th>
         </tr>
         </thead>
         <tbody>
@@ -25,6 +27,8 @@
             <td th:text="${prod.productDescription}"></td>
             <td th:text="${prod.productCategory}"></td>
             <td th:text="${prod.productPrice}"></td>
+            <td><a th:href="@{'/updateProductFE/' + ${prod.productId}}" class="btn btn-secondary btn-sm">Update</a></td>
+            <td><a th:href="@{'/deleteProductFE/' + ${prod.productId}}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this product?');">Delete</a></td>
             </tr>
         </tbody>
     </table>

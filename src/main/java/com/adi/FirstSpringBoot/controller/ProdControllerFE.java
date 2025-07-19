@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.adi.FirstSpringBoot.model.Product;
@@ -35,9 +37,23 @@ public class ProdControllerFE {
 	}
 	
 	@PostMapping("/addProductReqBodyFE")
-	public void addProductReqBodyFE(@RequestBody Product product)
+	public String addProductReqBodyFE(@ModelAttribute Product product)
 	{
 		productService.addProduct(product);
+		return "redirect:/getAllProductsFE";
+	}
+//	@PutMapping("/updateProductFE/{}")
+//	public String updateProductFE()
+//	{ 
+//		productService.updateProduct(, null);
+//		return "redirect:/getAllProductsFE";
+//	}
+	
+	@RequestMapping("/deleteProductFE/{pID}")
+	public String deleteProductFe(@PathVariable int pID) {
+	productService.deleteProduct(pID);
+	return "redirect:/getAllProductsFE";
+	
 	}
 }
 	
