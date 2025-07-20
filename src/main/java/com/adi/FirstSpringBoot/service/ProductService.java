@@ -67,7 +67,12 @@ public class ProductService {
 			// return productRepository.getProductsByCategoryAndTitle(category, title);
 		return productRepository.findByProductCategoryAndProductTitle(category, title);
 	}
-
+	
+	public List<Product> getProductsByTitle(String title)
+	{
+		return productRepository.findByProductTitleContaining(title);
+	}
+	
 	public List<Product> searchProducts(String str) {
 		return productRepository.findByProductDescriptionContaining(str);
 	}
