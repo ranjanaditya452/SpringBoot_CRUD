@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -41,7 +40,7 @@ public class ProdControllerFE {
 	public String addProductReqBodyFE(@ModelAttribute Product product)
 	{
 		productService.addProduct(product);
-		return "redirect:/getAllProductsFE";
+		return "redirect:/";
 	}
 	@RequestMapping("/updateProductFE/{pID}")
 	public String updateProductFE( @PathVariable int pID,Model model)
@@ -54,13 +53,13 @@ public class ProdControllerFE {
 	@RequestMapping("/deleteProductFE/{pID}")
 	public String deleteProductFe(@PathVariable int pID) {
 	productService.deleteProduct(pID);
-	return "redirect:/getAllProductsFE";
+	return "redirect:/";
 	}
 	
 	@RequestMapping("/updateProductFormFE/{pID}")
 	public String updateProductFormFE(@ModelAttribute Product product,@PathVariable int pID) {	
 		productService.updateProduct(pID, product);
-		return "redirect:/getAllProductsFE";
+		return "redirect:/";
 	}
 	
 	@RequestMapping("/searchProductsFE")
