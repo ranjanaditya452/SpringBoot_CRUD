@@ -84,6 +84,11 @@ public class ProductService {
 	public Page<Product> getProductByPagesSorted(int pageNumber, int pageSize, String field) {
 		return productRepository.findAll(PageRequest.of(pageNumber, pageSize).withSort(Sort.Direction.ASC,field));		
 	}
+	
+	public List<Product> getProductsByCategory(String str)
+	{
+		return productRepository.findByProductCategory(str);
+	}
 }
 
 

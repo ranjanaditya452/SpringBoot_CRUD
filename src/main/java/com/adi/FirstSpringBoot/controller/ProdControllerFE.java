@@ -22,7 +22,7 @@ public class ProdControllerFE {
 	ProductService productService;
 	 
 	
-	@RequestMapping("/getAllProductsFE")
+	@RequestMapping("/")
 	public String getAllProductsFE(Model model) {
 	List<Product> prods= productService.getProducts();
 	model.addAttribute("products",prods);
@@ -63,12 +63,19 @@ public class ProdControllerFE {
 		return "redirect:/getAllProductsFE";
 	}
 	
-	@RequestMapping("/productsFE")
-	public String productsFE(@RequestParam ("title") String title ,Model model)
+	@RequestMapping("/searchProductsFE")
+	public String SearchProductsFE(@RequestParam ("title") String title ,Model model)
 	{
 		List<Product> list = productService.getProductsByTitle(title);
 		model.addAttribute("products",list);
 		return "AllProducts";	
+	}
+	@RequestMapping("/filterProductsFE")
+	public String filterProductsFE(@RequestParam ("category") String category,Model model)
+	{
+		List<Product> list = productService.getProductsByCategory(category);
+		model.addAttribute("products",list);
+		return "AllProducts";
 	}
 }
 	
