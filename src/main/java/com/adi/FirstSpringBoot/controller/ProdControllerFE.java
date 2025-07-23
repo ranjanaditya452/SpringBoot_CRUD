@@ -1,5 +1,6 @@
 package com.adi.FirstSpringBoot.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,6 +76,17 @@ public class ProdControllerFE {
 		List<Product> list = productService.getProductsByCategory(category);
 		model.addAttribute("products",list);
 		return "AllProducts";
+	}
+	@RequestMapping("/403")
+	public String error403(Model model,Principal user)
+	{
+		if(user!=null)
+		{
+			model.addAttribute("msg", user.getName()+", You do not have permission to view this page!");
+		} else {
+			model.addAttribute("msg", "You do not have permission to view this page!");
+		}
+		return "403";
 	}
 }
 	
