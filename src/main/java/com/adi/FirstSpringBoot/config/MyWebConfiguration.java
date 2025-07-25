@@ -13,7 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.adi.FirstSpringBoot.service.MyUserDetailsService;
+import com.adi.FirstSpringBoot.config.MyUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
